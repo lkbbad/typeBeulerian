@@ -31,7 +31,7 @@ def main():
     dictionary = {}
     dictionary_pos = {}
     dictionary_neg = {}
-    for peak in range(0, n):
+    for peak in range(0, n+1):
         dictionary[peak] = []
         dictionary_pos[peak] = []
         dictionary_neg[peak] = []
@@ -97,8 +97,6 @@ def main():
         print("---------------------------")
 
     calculate = input("Do you want to calculate a single term for n+1? Y/N ")
-    if (calculate == "N"):
-        quit()
     if (calculate == "Y"):
         n = int(input("Enter your n (should be one more than originally entered): "))
         j = int(input("Enter your j: "))
@@ -134,6 +132,40 @@ def main():
             total_neg = (2*j+2)*p_nm1_j_k_neg + (2*j+1)*p_nm1_j_km1_neg + (2*k-2*j)*p_nm1_jm1_k_neg + (2*n-2*j-2*k+2)*p_nm1_jm1_km1_neg + p_nm1_j_km1_pos
             print("P_n,j,k -  = ", total_neg)
 
+    polynomial = input("Do you want to calculate a polynomial? Y/N ")
+    if (polynomial == "Y"):
+        n = int(input("Enter your n (should be same as originally entered): "))
+        sign = input("Enter + or -: ")
+        pos_poly = []
+        if (sign == "+"):
+            for k in range(0, n+1):
+                for j in range(0, k+1):
+                    # print("j: ", j, "k: ", k)
+                    j_peaks_pos = make_dict_pos(n,j,k, dictionary_pos)
+                    p_n_j_k_pos = len(j_peaks_pos[k])
+                    # print(str(p_n_j_k_pos))
+                    pos_poly.append(str(p_n_j_k_pos))
+                    pos_poly.append("s^" + str(j) + "t^" + str(k) + "+")
+            # print(pos_poly)
+            final_pos = ""
+            for c in pos_poly:
+                final_pos += c
+            print(final_pos)
+        else:
+            for k in range(0, n+1):
+                for j in range(0, k+1):
+                    j_peaks_neg = make_dict_pos(n,j,k, dictionary_neg)
+                    p_n_j_k_neg = len(j_peaks_neg[k])
+                    pos_poly.append(str(p_n_j_k_neg))
+                    pos_poly.append("s^" + str(j) + "t^" + str(k) + "+")
+            # print(pos_poly)
+            final_neg = ""
+            for c in pos_poly:
+                final_neg += c
+            print(final_neg)
+    
+                    
+                
 def make_dict_pos(n, j,k,dictionary_pos):
     dictionary_pos_des = {}
     for des in range(0, n+1):
