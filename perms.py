@@ -52,15 +52,30 @@ def main():
     print("for 0 peaks: 2^(n-1) = ", 2**(n-1))
     print("---------------------------")
 
+    pos_poly = []
+    neg_poly = []
     for key in dictionary:
         print("# of P_n,k with", key, "peak(s) is ", len(dictionary[key]))
     print("---------------------------")
     for key in dictionary_pos:
         print("# of P_n,k + with", key, "peak(s) is ", len(dictionary_pos[key]))
+        pos_poly.append(str(len(dictionary_pos[key])))
+        pos_poly.append("x^" + str(key) + "+")
     print("---------------------------")
     for key in dictionary_neg:
         print("# of P_n,k - with", key, "peak(s) is ", len(dictionary_neg[key]))
+        neg_poly.append(str(len(dictionary_neg[key])))
+        neg_poly.append("x^" + str(key) + "+")
     print("---------------------------")
+
+    final_pos_poly = ""
+    for c in pos_poly:
+        final_pos_poly += c
+    print("P_n(x) + = ", final_pos_poly)
+    final_neg_poly = ""
+    for c in neg_poly:
+        final_neg_poly += c
+    print("P_n(x) - = ", final_neg_poly)
 
     for key in dictionary_pos:
         print("Now we will count the number of P_n,k + with", key, "peaks that have various descents.")

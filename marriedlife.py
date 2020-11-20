@@ -29,6 +29,6 @@ def negPNX(n):
     return P.polyadd(ret, third)
 
 
-for i in range(1, 5):
-    print(posPNX(i))
-    print(negPNX(i))
+for i in range(1, 15):
+    print("+ P_" + str(i) + "(x) is " + str(posPNX(i)))
+    print("- P_" + str(i) + "(x) is " + str(negPNX(i)))
