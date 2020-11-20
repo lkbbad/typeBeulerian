@@ -41,6 +41,8 @@ def negPNX(n):
 
 
 for i in range(20):
-    print(posPNX(20-i))
-    print(negPNX(20-i))
-    print(P.polyadd(posPNX(20-i), negPNX(20-i)))
+    p = 20-i
+    print("+P_" + str(p) + "(x) is " + str(posPNX(p)))
+    print("-P_" + str(p) + "(x) is " + str(negPNX(p)))
+    print(" S_" + str(p) + "(x) is " +
+          str(P.polyadd(posPNX(p), negPNX(p))))
